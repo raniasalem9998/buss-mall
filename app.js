@@ -108,21 +108,22 @@ function generateRandomNumber(forbiddenIndex) {
 
 displayRandomImages();
 
-// var chooseRounds=document.getElementById('chooseRounds');
+var chooseRounds=document.getElementById('chooseRounds');
+var rounds=document.getElementById('rounds');
+chooseRounds.addEventListener('submit',roundNum);
+var number;
+function roundNum(event){
+  event.preventDefault();
+ number = event.target.rounds.value;
+  return number;
+}
 
-// chooseRounds.addEventListener('submit',roundNum);
-// var number;
-// function roundNum(event){
-//  number = event.target.rounds.value;
-//   return number;
-// }
-// roundNum();
 
 
 productsSelect.addEventListener("click", chooseImage);
 
 function chooseImage(event) {
-  if (clicks < 25) {
+  if (clicks < number) {
     var clickElement = event.target;
     var clickElementId = clickElement.id;
     if (clickElementId === "first" || clickElementId === "second" || clickElementId === "third") {
