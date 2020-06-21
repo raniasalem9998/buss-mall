@@ -32,25 +32,25 @@ function Product(name,path) {
 
 
 
-new Product('Bag','../img/bag.jpg');
-new Product('Banana', '../img/banana.jpg');
-new Product('bathroom', '../img/bathroom.jpg');
-new Product('Boots', '../img/boots.jpg');
-new Product('Breakfast', '../img/breakfast.jpg');
-new Product('Bubblegum', '../img/bubblegum.jpg');
-new Product('chair', '../img/chair.jpg');
-new Product('cthulhu', '../img/cthulhu.jpg');
-new Product('Dog Duck', '../img/dog-duck.jpg');
-new Product('Dragon', '../img/dragon.jpg');
-new Product('Pet sweep', '../img/pet-sweep.jpg');
-new Product('Scissors', '../img/scissors.jpg');
-new Product('Shark', '../img/shark.jpg');
-new Product('Sweep', '../img/sweep.png');
-new Product('Tauntaun', '../img/tauntaun.jpg');
-new Product('Unicorn', '../img/unicorn.jpg');
-new Product('Usb', '../img/usb.gif');
-new Product('Water can', '../img/water-can.jpg');
-new Product('Wine glass','../img/wine-glass.jpg');
+new Product('Bag','img/bag.jpg');
+new Product('Banana', 'img/banana.jpg');
+new Product('bathroom', 'img/bathroom.jpg');
+new Product('Boots', 'img/boots.jpg');
+new Product('Breakfast', 'img/breakfast.jpg');
+new Product('Bubblegum', 'img/bubblegum.jpg');
+new Product('chair', 'img/chair.jpg');
+new Product('cthulhu', 'img/cthulhu.jpg');
+new Product('Dog Duck', 'img/dog-duck.jpg');
+new Product('Dragon', 'img/dragon.jpg');
+new Product('Pet sweep', 'img/pet-sweep.jpg');
+new Product('Scissors', 'img/scissors.jpg');
+new Product('Shark', 'img/shark.jpg');
+new Product('Sweep', 'img/sweep.png');
+new Product('Tauntaun', 'img/tauntaun.jpg');
+new Product('Unicorn', 'img/unicorn.jpg');
+new Product('Usb', 'img/usb.gif');
+new Product('Water can', 'img/water-can.jpg');
+new Product('Wine glass','img/wine-glass.jpg');
 
 
 
