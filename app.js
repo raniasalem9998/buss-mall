@@ -21,12 +21,13 @@ var currentThirdImage;
 
 
 
-
+var nameArray=[];
 function Product(name,path) {
   this.name = name;
   this.path = path;
   this.clicks = 0;
   this.timesshown = 0;
+  nameArray.push(this.name);
   allProduct.push(this);
 };
 
@@ -143,19 +144,81 @@ function chooseImage(event) {
   }
   else {
 
-    var results = document.getElementById('results');
-
-    for (var i = 0; i < allProduct.length; i++) {
-      var listLi = document.createElement('li');
-
-      var perc = (( allProduct[i].clicks/allProduct[i].timesshown) * 100).toFixed(1);
-      listLi.textContent = allProduct[i].name + ' has' + allProduct[i].clicks + ' clickes, and ' + allProduct[i].timesshown + ' times shown, so the average is '+ perc;
-      results.appendChild(listLi);
-      console.log(allProduct[i].timesshown)
-    }
-
+    // var results = document.getElementById('results');
+    
+    
+resultChart();
     productsSelect.removeEventListener('click', chooseImage)
   }
 
 };
+var clickesArray=[];
+console.log(clickesArray)
+var showArray=[];
+var percArray=[];
+function resultChart(){
+  for (var i = 0; i < allProduct.length; i++) {
+    // var listLi = document.createElement('li');
 
+    var perc = (( allProduct[i].clicks/allProduct[i].timesshown) * 100).toFixed(1);
+    // listLi.textContent = allProduct[i].name + ' has' + allProduct[i].clicks + ' clickes, and ' + allProduct[i].timesshown + ' times shown, so the average is '+ perc;
+    // results.appendChild(listLi);
+    clickesArray.push(allProduct[i].clicks);
+    showArray.push(allProduct[i].timesshown);
+    percArray.push(perc);
+
+  }
+  var ctx = document.getElementById('chart').getContext('2d');
+  var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: nameArray,
+          datasets: [
+            {
+              label:'percent of Votes',
+              data: percArray,
+              backgroundColor: 
+                  
+                  'rgba(153, 102, 255, 0.3)'
+              ,
+              borderColor: 
+                  'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+          },
+          {
+            label:'clickes',
+            data: clickesArray,
+            backgroundColor: 
+                
+                'rgba(140, 80, 200, 0.3)'
+            ,
+            borderColor: 
+                'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        },
+        {
+          label:'times shown',
+          data: showArray,
+          backgroundColor: 
+              
+              'rgba(153, 102, 100, 0.3)'
+          ,
+          borderColor: 
+              'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+      }
+        ]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+
+
+}
