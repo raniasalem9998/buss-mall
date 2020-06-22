@@ -111,9 +111,9 @@ displayRandomImages();
 var chooseRounds=document.getElementById('chooseRounds');
 var rounds=document.getElementById('rounds');
 chooseRounds.addEventListener('submit',roundNum);
-var number;
+var number=25;
 function roundNum(event){
-  event.preventDefault();
+  // event.preventDefault();
  number = event.target.rounds.value;
   return number;
 }
