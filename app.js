@@ -1,8 +1,8 @@
 'use strict'
 
 var allProduct = [];
-// console.log(allProduct);
-var clicks = 0;
+var allClicks = 0;
+console.log(allClicks)
 var productsSelect = document.getElementById('products');
 
 var previousFirstImageIndex;
@@ -22,6 +22,7 @@ var currentThirdImage;
 
 
 var nameArray = [];
+
 function Product(name, path) {
   this.name = name;
   this.path = path;
@@ -33,25 +34,39 @@ function Product(name, path) {
 
 
 
-new Product('Bag', 'img/bag.jpg');
-new Product('Banana', 'img/banana.jpg');
-new Product('bathroom', 'img/bathroom.jpg');
-new Product('Boots', 'img/boots.jpg');
-new Product('Breakfast', 'img/breakfast.jpg');
-new Product('Bubblegum', 'img/bubblegum.jpg');
-new Product('chair', 'img/chair.jpg');
-new Product('cthulhu', 'img/cthulhu.jpg');
-new Product('Dog Duck', 'img/dog-duck.jpg');
-new Product('Dragon', 'img/dragon.jpg');
-new Product('Pet sweep', 'img/pet-sweep.jpg');
-new Product('Scissors', 'img/scissors.jpg');
-new Product('Shark', 'img/shark.jpg');
-new Product('Sweep', 'img/sweep.png');
-new Product('Tauntaun', 'img/tauntaun.jpg');
-new Product('Unicorn', 'img/unicorn.jpg');
-new Product('Usb', 'img/usb.gif');
-new Product('Water can', 'img/water-can.jpg');
-new Product('Wine glass', 'img/wine-glass.jpg');
+
+if(localStorage.getItem('allProducts')){
+
+allProduct = JSON.parse(localStorage.getItem('allProducts'));
+
+for (var i=0;i<allProduct.length;i++){
+  nameArray.push(allProduct[i].name);
+}
+
+}
+else {
+
+  new Product('Bag', 'img/bag.jpg');
+  new Product('Banana', 'img/banana.jpg');
+  new Product('bathroom', 'img/bathroom.jpg');
+  new Product('Boots', 'img/boots.jpg');
+  new Product('Breakfast', 'img/breakfast.jpg');
+  new Product('Bubblegum', 'img/bubblegum.jpg');
+  new Product('chair', 'img/chair.jpg');
+  new Product('cthulhu', 'img/cthulhu.jpg');
+  new Product('Dog Duck', 'img/dog-duck.jpg');
+  new Product('Dragon', 'img/dragon.jpg');
+  new Product('Pet sweep', 'img/pet-sweep.jpg');
+  new Product('Scissors', 'img/scissors.jpg');
+  new Product('Shark', 'img/shark.jpg');
+  new Product('Sweep', 'img/sweep.png');
+  new Product('Tauntaun', 'img/tauntaun.jpg');
+  new Product('Unicorn', 'img/unicorn.jpg');
+  new Product('Usb', 'img/usb.gif');
+  new Product('Water can', 'img/water-can.jpg');
+  new Product('Wine glass', 'img/wine-glass.jpg');
+  
+};
 
 
 
@@ -60,7 +75,7 @@ function displayRandomImages() {
 
   var forbiddenIndex = [];
 
-  if (clicks > 0) {
+  if (allClicks > 0) {
     forbiddenIndex = [previousFirstImageIndex, previousSecondImageIndex, previousThirdImageIndex];
   }
 
@@ -112,42 +127,48 @@ displayRandomImages();
 var chooseRounds = document.getElementById('chooseRounds');
 var rounds = document.getElementById('rounds');
 chooseRounds.addEventListener('submit', roundNum);
+
 var number = 25;
 function roundNum(event) {
-  event.preventDefault();
+   event.preventDefault();
+  allClicks=0;
+  // console.log(allClicks)
+ 
   number = event.target.rounds.value;
-  return number;
+  
 }
 
 
 productsSelect.addEventListener("click", chooseImage);
 
 function chooseImage(event) {
-  if (clicks < number) {
+  if (allClicks < number) {
     var clickElement = event.target;
     var clickElementId = clickElement.id;
     if (clickElementId === "first" || clickElementId === "second" || clickElementId === "third") {
-      clicks++;
+      allClicks++;
       if (clickElementId === "second") {
         currentSecondImage.clicks += 1;
+        saved();
       }
       if (clickElementId === "first") {
         currentFirstImage.clicks += 1;
+        saved();
       }
       if (clickElementId === "third") {
         currentThirdImage.clicks += 1;
+        saved();
       }
       displayRandomImages();
+      // saved()
     }
-
+    
   }
+  
   else {
-
-    // var results = document.getElementById('results');
-
-
+   
     resultChart();
-    productsSelect.removeEventListener('click', chooseImage)
+    productsSelect.removeEventListener('click', chooseImage);
   }
 
 };
@@ -157,11 +178,10 @@ function chooseImage(event) {
 
 
 
-
 var clickesArray = [];
-console.log(clickesArray)
 var showArray = [];
 var percArray = [];
+
 function resultChart() {
   for (var i = 0; i < allProduct.length; i++) {
     // var listLi = document.createElement('li');
@@ -174,11 +194,6 @@ function resultChart() {
     percArray.push(perc);
 
   }
-
-
-
-
-
 
 
   var ctx = document.getElementById('chart').getContext('2d');
@@ -235,3 +250,35 @@ function resultChart() {
 
 
 }
+
+
+// var clickesArray = [];
+// var showArray = [];
+// var percArray = [];
+// var nameArray = [];
+ saved();
+function saved (){
+
+  // for ( var i=0 ; i<allProduct.length ; i++ ){
+
+    // var mySavedData=JSON.stringify(allProduct[i])
+    localStorage.setItem('allProducts',JSON.stringify(allProduct));
+    // localStorage.setItem('allClicks',JSON.stringify(allClicks));
+  
+    
+  // }
+  
+}
+
+  // localStorage.clear();
+
+//   for(var i=0;i<allProduct.length;i++){
+//     var key = localStorage.key(i);
+//     console.log(key+'key')
+//   var value= localStorage.getItem(key);
+//   console.log(value+'value')
+
+// }
+
+// allProduct[i].clicks.innerHTML += 
+// allProduct[i].savedShown+=saved[1];
